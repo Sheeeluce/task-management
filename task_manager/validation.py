@@ -1,4 +1,3 @@
-import re
 from datetime import datetime
 
 def validate_task_title(title):
