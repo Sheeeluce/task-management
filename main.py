@@ -10,7 +10,6 @@ from task_manager.task_utils import (
 # Define the main function
 def main():
 
-    tasks = []
     
     while True:
         print("Task Management System")
@@ -36,12 +35,12 @@ def main():
         elif choice == "2":
             try:
                 index = int(input("Enter task index: "))
-                mark_task_as_complete(index, tasks)
+                mark_task_as_complete(index)
             except ValueError:
                 print("Invalid index")
 
         elif choice == "3":
-            pending = view_pending_tasks(tasks)
+            pending = view_pending_tasks()
             if not pending:
                 print("No pending tasks")
             else:
@@ -49,7 +48,7 @@ def main():
                     print(task)
 
         elif choice == "4":
-            progress = calculate_progress(tasks)
+            progress = calculate_progress()
             print(f"Progress: {progress:.2f}%")
 
         elif choice == "5":
