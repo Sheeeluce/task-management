@@ -13,21 +13,22 @@ tasks = []
 
 # Implement add_task function
 def add_task(title, description, due_date):
-    valid_title, msg1 = validate_task_title(title)
-    valid_desc, msg2 = validate_task_description(description)
-    valid_date, msg3 = validate_due_date(due_date)
+    try:
+        validate_task_title(title)
+        validate_task_description(description)
+        validate_due_date(due_date)
 
-    if not(valid_title and valid_desc and valid_date):
-        return False, f"{msg1} | {msg2} | {msg3}"
-    
-    task = {
-        "title": title,
-        "description": description,
-        "due_date": due_date,
-        "completed": False
-    }
-    tasks.append(task)
-    return True, "Task added successfully!"
+        task = {
+            "title": title,
+            "description": description,
+            "due_date": due_date,
+            "completed": False
+        }
+        tasks.append(task)
+        
+        return True, "Task added successfully!"
+    except ValueError as e:
+        return False, str(e)
     #print("Task added successfully!")
     
 # Implement mark_task_as_complete function
@@ -35,7 +36,7 @@ def mark_task_as_complete(index, tasks=tasks):
     if index < 0 or index >= len(tasks):
         print("Invalid task index")
         return
-    tasks[index]["completed"] = True
+    tasks[index - 1]["completed"] = True
     print("Task marked as complete!")
     
 # Implement view_pending_tasks function
